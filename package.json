@@ -17,7 +17,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "deploy": "gh-pages -d dist -r https://github.com/Rowe9/Rowe-Admin-System.git -b gh-pages",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {

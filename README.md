@@ -1,8 +1,12 @@
 # Arrow 海图 SDK
 
-基于 Leaflet 构建的地图 SDK
+基于 Leaflet 构建的地图 SDK。
 
 ## 接口介绍
+
+```
+yarn add arrow-map
+```
 
 1. 初始化
 
