@@ -1,6 +1,7 @@
 # Arrow 海图 SDK
 
 基于 Leaflet 构建的地图 SDK。
+![alt text](demo.png "示例")
 
 ## 接口介绍
 
