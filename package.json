@@ -1,0 +1,32 @@
+{
+  "name": "arrow-map",
+  "version": "0.0.4",
+  "author": {
+    "name": "shimon",
+    "email": "zhuoyang1121@163.com"
+  },
+  "type": "module",
+  "keywords": [
+    "arrow-map"
+  ],
+  "license": "ISC",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "arrow-map": "^0.0.4",
+    "less": "^4.1.3",
+    "lodash": "^4.17.21",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.0"
+  }
+}

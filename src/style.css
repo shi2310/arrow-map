@@ -1,0 +1,51 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+html {
+  font-size: 14px;
+}
+
+#app{
+  height:100%;
+}
+
+body {
+  background: #f8f8f8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei UI";
+  font-weight: normal;
+  outline-style: none;
+  font-style: normal;
+  text-decoration: none;
+}
+
+/*修改滚动条样式*/
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  /**/
+}
+*::-webkit-scrollbar-track {
+  background: rgb(239, 239, 239);
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #bfbfbf;
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #007380;
+}
+*::-webkit-scrollbar-corner {
+  background: #179a16;
+}
