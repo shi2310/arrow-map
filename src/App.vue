@@ -17,7 +17,7 @@
 import { onMounted, ref, onUnmounted } from "vue";
 import stop1Png from "@/assets/stop1.png";
 import stop2Png from "@/assets/stop2.png";
-import MyMap from "./sdk/index";
+import MyMap from "arrow-map";
 import icon from "@/assets/mShip.png";
 import wavePng from "@/assets/wave.png";
 import shipImg from "@/assets/ship.png";
