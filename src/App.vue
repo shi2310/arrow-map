@@ -1,8 +1,14 @@
 <template>
   <div id="map">
     <div class="btns">
-      轨迹动画： <button @click="play">播放</button
-      ><button @click="pause">{{ pauseRef ? "继续" : "暂停" }}</button>
+      <p>
+        轨迹动画： <button @click="play">播放</button
+        ><button @click="pause">{{ pauseRef ? "继续" : "暂停" }}</button>
+      </p>
+      <p>
+        自由绘制： <button @click="drawPolyLine">折线</button
+        ><button @click="drawPolygon">多边形</button>
+      </p>
     </div>
   </div>
 </template>
@@ -11,21 +17,23 @@
 import { onMounted, ref, onUnmounted } from "vue";
 import stop1Png from "@/assets/stop1.png";
 import stop2Png from "@/assets/stop2.png";
-import MyMap from "arrow-map";
+import MyMap from "./sdk/index";
 import icon from "@/assets/mShip.png";
 import wavePng from "@/assets/wave.png";
 import shipImg from "@/assets/ship.png";
 import iconPng from "@/assets/icon.png";
 import _ from "lodash";
+import json from "./source";
 
 // 历史轨迹线点
-const historyLines = [
-  { lat: 31.254086, lng: 121.742848, ts: "2024-7-19 15:32:41" },
-  { lat: 31.254086, lng: 121.743048, ts: "2024-7-19 16:00:41" },
-  { lat: 31.35, lng: 121.805, ts: "2024-7-20 16:32:41" },
-  { lat: 31.37, lng: 121.835, ts: "2024-7-21 18:32:41" },
-  { lat: 31.4, lng: 121.9, ts: "2024-7-22 15:32:41" },
-];
+const historyLines = _.sortBy(
+  _.map(json, (o) => ({
+    ts: o.ts,
+    lat: o.location.coordinates[1],
+    lng: o.location.coordinates[0],
+  })),
+  "ts"
+);
 
 const circles = [
   { label: "20海里", color: "#43D9B7", radius: 1852 * 20 },
@@ -45,18 +53,10 @@ const source = [
   {
     guid: "qy1",
     position: {
-      lng: 120.64052,
-      lat: 39.34506,
+      lng: 121.64052,
+      lat: 31.94506,
     },
     name: "区域一",
-  },
-  {
-    guid: "api_test",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "测试",
   },
   {
     guid: "BBMS245",
@@ -65,86 +65,6 @@ const source = [
       lat: 31.66817494666304,
     },
     name: "BBMS245",
-  },
-  {
-    guid: "111111",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "111111111",
-  },
-  {
-    guid: "BBMS125",
-    position: {
-      lng: 121.78497524448419,
-      lat: 31.685547682978168,
-    },
-    name: "BBMS125",
-  },
-  {
-    guid: "BBMS87",
-    position: {
-      lng: 118.07869,
-      lat: 24.597569,
-    },
-    name: "BBMS87",
-  },
-  {
-    guid: "td_test",
-    position: {
-      lng: 121.77290201843009,
-      lat: 31.69243031299051,
-    },
-    name: "td_test",
-  },
-  {
-    guid: "DNH1",
-    position: {
-      lng: 121.76312845448153,
-      lat: 31.68325336344183,
-    },
-    name: "大南湖二矿",
-  },
-  {
-    guid: "JG_test1",
-    position: {
-      lng: 121.7642782855343,
-      lat: 31.683908888080893,
-    },
-    name: "机构区域一",
-  },
-  {
-    guid: "JG_01_qy1",
-    position: {
-      lng: 121.75852913027045,
-      lat: 31.678664537578474,
-    },
-    name: "机构_01区域1",
-  },
-  {
-    guid: "JG_01_qy3",
-    position: {
-      lng: 121.77462676500924,
-      lat: 31.688497444667075,
-    },
-    name: "机构_01区域3",
-  },
-  {
-    guid: "JG_02_qy1",
-    position: {
-      lng: 121.78842473764252,
-      lat: 31.66817494666304,
-    },
-    name: "机构_02区域1",
-  },
-  {
-    guid: "JG_02_qy2",
-    position: {
-      lng: 121.76772777869262,
-      lat: 31.672764288504148,
-    },
-    name: "机构_02区域2",
   },
   {
     guid: "JG_02_qy3",
@@ -171,254 +91,6 @@ const source = [
     name: "机构_02_1区域2",
   },
   {
-    guid: "JG_02_1_qy3",
-    position: {
-      lng: 121.77002744079816,
-      lat: 31.676697829952634,
-    },
-    name: "机构_02_1区域3",
-  },
-  {
-    guid: "test10",
-    position: {
-      lng: 119.059944,
-      lat: 32.22505,
-    },
-    name: "服务器10区域",
-  },
-  {
-    guid: "test123",
-    position: {
-      lng: 109.51873,
-      lat: 31.043587,
-    },
-    name: "嵌入式123区域",
-  },
-  {
-    guid: "test28",
-    position: {
-      lng: 121.67401654789171,
-      lat: 31.717989854042994,
-    },
-    name: "区域test28",
-  },
-  {
-    guid: "hhh",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "hhh",
-  },
-  {
-    guid: "HY001",
-    position: {
-      lng: 121.72920843842476,
-      lat: 31.724870053556437,
-    },
-    name: "海运001",
-  },
-  {
-    guid: "000",
-    position: {
-      lng: 114.40218455431486,
-      lat: 30.472466374059625,
-    },
-    name: "srt_puser船",
-  },
-  {
-    guid: "test",
-    position: {
-      lng: 121.7844003289578,
-      lat: 31.755333308391904,
-    },
-    name: "test",
-  },
-  {
-    guid: "jgquyu1",
-    position: {
-      lng: 97.458680011496,
-      lat: 39.70536526512196,
-    },
-    name: "子jg区域1",
-  },
-  {
-    guid: "nanhu",
-    position: {
-      lng: 121.4952178191857,
-      lat: 31.902593106904582,
-    },
-    name: "南湖区域_测云台",
-  },
-  {
-    guid: "tututu",
-    position: {
-      lng: 117.74374000000002,
-      lat: 30.8934217,
-    },
-    name: "fsdfas",
-  },
-  {
-    guid: "ttttttttttt",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "ttttttttttt",
-  },
-  {
-    guid: "aa33",
-    position: {
-      lng: 117.63583413324218,
-      lat: 38.98713489013469,
-    },
-    name: "船33",
-  },
-  {
-    guid: "quyu0906",
-    position: {
-      lng: 114.44003726638697,
-      lat: 30.485958472600327,
-    },
-    name: "区域0906",
-  },
-  {
-    guid: "test02",
-    position: {
-      lng: 121.4693466204982,
-      lat: 31.867272359051615,
-    },
-    name: "test",
-  },
-  {
-    guid: "12312312",
-    position: {
-      lng: 121.86546341817822,
-      lat: 31.779893078200757,
-    },
-    name: "测试",
-  },
-  {
-    guid: "test_zxj",
-    position: {
-      lng: 116.98928,
-      lat: -1.3487934,
-    },
-    name: "周小军测试",
-  },
-  {
-    guid: "xpctest",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "许鹏程区域test",
-  },
-  {
-    guid: "423423",
-    position: {
-      lng: 121.57973040156443,
-      lat: 31.768105210254358,
-    },
-    name: "423423",
-  },
-  {
-    guid: "53425432",
-    position: {
-      lng: 121.60272702261986,
-      lat: 31.772034668111242,
-    },
-    name: "53453",
-  },
-  {
-    guid: "xiaomingquyu",
-    position: {
-      lng: 121.7073616484221,
-      lat: 31.81230189189942,
-    },
-    name: "小明区域",
-  },
-  {
-    guid: "yuhuaquyu",
-    position: {
-      lng: 121.6464206026252,
-      lat: 31.789715142651417,
-    },
-    name: "余化区域",
-  },
-  {
-    guid: "xiaomingquyu1",
-    position: {
-      lng: 121.7763515115884,
-      lat: 31.649159506897366,
-    },
-    name: "小明区域1",
-  },
-  {
-    guid: "yuhuaquyu1",
-    position: {
-      lng: 121.75565455263852,
-      lat: 31.694396684036857,
-    },
-    name: "余化区域1",
-  },
-  {
-    guid: "yuhuaquyu2",
-    position: {
-      lng: 121.69701316894715,
-      lat: 31.74649017993255,
-    },
-    name: "余化区域2",
-  },
-  {
-    guid: "186server",
-    position: {
-      lng: 121.43715135102066,
-      lat: 31.720938523887444,
-    },
-    name: "186server",
-  },
-  {
-    guid: "82server",
-    position: {
-      lng: 119.06094,
-      lat: 32.21927,
-    },
-    name: "82server",
-  },
-  {
-    guid: "85server",
-    position: {
-      lng: 121.698163,
-      lat: 31.730767,
-    },
-    name: "85server",
-  },
-  {
-    guid: "JG_car1",
-    position: {
-      lng: 121.5849046413019,
-      lat: 31.711436798653537,
-    },
-    name: "JG_car1",
-  },
-  {
-    guid: "JG_qy1",
-    position: {
-      lng: 121.77577659606202,
-      lat: 31.678664537578474,
-    },
-    name: "区域1",
-  },
-  {
-    guid: "JG_qy2",
-    position: {
-      lng: 121.7435813265844,
-      lat: 31.696363013004408,
-    },
-    name: "区域2",
-  },
-  {
     guid: "JG_qy3",
     position: {
       lng: 121.75048031290103,
@@ -429,11 +101,12 @@ const source = [
 ];
 
 let _map = null;
+let trackLine = null;
 onMounted(() => {
   const map = new MyMap("map");
 
   _.each(circles, (o) => {
-    map.drawCircleRange([31.28, 121.75], {
+    map.drawCircle([31.28, 121.75], {
       radius: o.radius,
       color: o.color,
       weight: 2,
@@ -482,7 +155,10 @@ onMounted(() => {
     },
   ]);
 
-  map.drawTrajectory(historyLines);
+  trackLine = map.drawTrajectory(historyLines, {
+    color: "red",
+    smoothFactor: 2,
+  });
 
   map.drawPointMarkers([
     {
@@ -504,7 +180,7 @@ onMounted(() => {
     `<img src=${shipImg} style="transform: rotate(45deg);width: 5px;height: 16px;"></img>`
   );
 
-  map.drawMarker({ lat: 31.3, lng: 121.75 }, undefined);
+  map.drawMarker({ lat: 31.3, lng: 121.75 });
 
   map
     .createMarkerClusterer(
@@ -543,7 +219,7 @@ onUnmounted(() => {
 const play = () => {
   _map.playAnimatedMarker(
     {
-      points: historyLines,
+      points: trackLine.getSimplifyLatLngs(),
       totalDuration: 10000,
     },
     {
@@ -562,6 +238,16 @@ const pauseRef = ref(null);
 const pause = () => {
   pauseRef.value = !pauseRef.value;
   _map.pauseAnimatedMarker(pauseRef.value);
+};
+
+const drawPolyLine = (e) => {
+  e.stopPropagation();
+  _map.startDrawPolyline();
+};
+
+const drawPolygon = (e) => {
+  e.stopPropagation();
+  _map.startDrawPolygon();
 };
 </script>
 

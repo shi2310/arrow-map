@@ -342,17 +342,15 @@ array-uniq@^1.0.1:
   resolved "https://registry.npmmirror.com/array-uniq/-/array-uniq-1.0.3.tgz#af6ac877a25cc7f74e058894753858dfdb24fdb6"
   integrity sha512-MNha4BWQ6JbwhFhj03YK552f7cb3AzoE8SzeljgChvL1dl3IcvggXVz1DilzySZkCja+CXuZbdW7yATchWn8/Q==
 
-arrow-map@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.npmmirror.com/arrow-map/-/arrow-map-0.0.4.tgz#fe6da8b9b4c4f64486fce5851bd9c9bd21915c37"
-  integrity sha512-F0TQGSh0Rg2/uWJpNlU9OL8JRXFuh7MAxnFqQ9LL7S8Uy1wEMwxC6OzA3RXoZpaP0Pjgx2S5Ydi9C4DoTpkqGw==
+arrow-map@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.npmmirror.com/arrow-map/-/arrow-map-0.0.10.tgz#a1c7f535ba303d66a549e2135b2a021352dc38a4"
+  integrity sha512-gyRu9bVOkFdVl986k3iuq58uu06Qd33fJtYsqtN9ZCEbQfUM2bpzzjbFrtmp8wKIHRr7tRlH2tV62KClCMMcAA==
   dependencies:
     "@flatten-js/core" "^1.5.3"
     leaflet "^1.9.4"
-    less "^4.1.3"
     lodash "^4.17.21"
     rbush "^4.0.0"
-    vue "^3.4.21"
 
 async@^3.2.4:
   version "3.2.5"

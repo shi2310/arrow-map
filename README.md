@@ -5,10 +5,6 @@
 
 ## 接口介绍
 
-```
-yarn add arrow-map
-```
-
 1. 初始化
 
 ```
@@ -124,7 +120,38 @@ map.drawHtmlOverlay(
     .markerClustererSetData(source);
 ```
 
-9. 销毁 [destory]
+9. 绘制原生标记点 [drawMarker]  
+   默认蓝色图标
+
+```
+map.drawMarker({ lat: 31.3, lng: 121.75 });
+```
+
+10. 绘制原生折线 [drawPolyline]
+
+```
+map.drawPolyline([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 }]);
+```
+
+11. 绘制原生多边形 [drawPolygon]
+
+```
+map.drawPolygon([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 },{ lat: 31.5, lng: 121.75 }]);
+```
+
+12. 开启鼠标绘制折线 [startDrawPolyline]
+
+```
+map.startDrawPolyline();
+```
+
+13. 开启鼠标绘制多边形 [startDrawPolygon]
+
+```
+map.startDrawPolygon();
+```
+
+14. 销毁 [destory]
 
 ```
 map.destory()
