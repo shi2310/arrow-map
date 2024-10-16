@@ -185,6 +185,7 @@ onMounted(() => {
   map
     .createMarkerClusterer(
       (o) => {
+        // 错位布局时html模板
         return `<div
           class="marker"
           style='
@@ -194,14 +195,13 @@ onMounted(() => {
             flex-direction: ${o.reverse ? "row-reverse" : "row"}
           '
         >
-          <img width='25px' src="${iconPng}" />
-          <div class="label">
-            <div
-              style='flexDirection: ${o.reverse ? "row-reverse" : "row"}'>
-              <span>${o.key}</span> <span>附加</span>
-            </div>
+          <img width='24px' src="${iconPng}" />
+          <div class="label" style='flexDirection: ${
+            o.reverse ? "row-reverse" : "row"
+          }'>
+            <div>${o.key}</div>
           </div>
-    </div>`;
+        </div>`;
       },
       (info) => {
         // 聚合对象点击回调
