@@ -135,22 +135,25 @@ map.drawPolyline([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 }]);
 map.drawPolygon([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 },{ lat: 31.5, lng: 121.75 }]);
 ```
 
-12. 开启鼠标绘制折线 [startDrawPolyline]  
-    双击选中图形，Delete 键删除
+12. 开启鼠标绘制折线 [startDrawPolyline]
+
+- 双击选中图形，Delete 键删除
 
 ```
 map.startDrawPolyline(({ id, latLngs, show, toggle, remove }) => {});
 ```
 
-13. 开启鼠标绘制多边形 [startDrawPolygon]  
-    双击选中图形，Delete 键删除
+13. 开启鼠标绘制多边形 [startDrawPolygon]
+
+- 双击选中图形，Delete 键删除
 
 ```
 map.startDrawPolygon(({ id, latLngs, show, toggle, remove }) => {});
 ```
 
-14. 开启测量 [startDrawMeasure]  
-    双击选中图形，Delete 键删除
+14. 开启测量 [startDrawMeasure]
+
+- 双击选中图形，Delete 键删除
 
 ```
 map.startDrawMeasure();
