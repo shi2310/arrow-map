@@ -342,10 +342,10 @@ array-uniq@^1.0.1:
   resolved "https://registry.npmmirror.com/array-uniq/-/array-uniq-1.0.3.tgz#af6ac877a25cc7f74e058894753858dfdb24fdb6"
   integrity sha512-MNha4BWQ6JbwhFhj03YK552f7cb3AzoE8SzeljgChvL1dl3IcvggXVz1DilzySZkCja+CXuZbdW7yATchWn8/Q==
 
-arrow-map@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.npmmirror.com/arrow-map/-/arrow-map-0.0.11.tgz#b12672fa61b118ca3350b33185d569078b263443"
-  integrity sha512-0B+6FhhLHzHpsfvaoxx9UEBsz/8q9FR46y4F7A85AHqa9gUhdUk1ZsKUiUW95FK8RDSihX2QzboEU8jpj9Pvmg==
+arrow-map@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.npmjs.org/arrow-map/-/arrow-map-0.0.18.tgz#8c22ce35fe7b496b420dde66047edc4f89bc0deb"
+  integrity sha512-YkgHFfLltHAafRepsYXKKOwP6UJwKSXcJrH+i+6FcuU/LHuU9/eO29D/UlKvfhIEcAiLhnLoptA5sfKExOF+xA==
   dependencies:
     "@flatten-js/core" "^1.5.3"
     leaflet "^1.9.4"
