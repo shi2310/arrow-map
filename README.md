@@ -95,28 +95,24 @@ map.drawHtmlOverlay(
   map
     .createMarkerClusterer(
       (o) => {
+        // 错位布局时html模板
         return `<div
           class="marker"
           style='
             transform: translateX(${
-              o.reverse ? "calc(-50% + 16px)" : "calc(50% - 16px)"
+              o.reverse ? "calc(-50% + 14px)" : "calc(50% - 14px)"
             });
             flex-direction: ${o.reverse ? "row-reverse" : "row"}
           '
         >
-          <img width='25px' src="${iconPng}" />
-          <div class="label">
-            <div
-              style='flexDirection: ${o.reverse ? "row-reverse" : "row"}'>
-              <span>${o.key}</span> <span>附加</span>
-            </div>
+          <img width='24px' src="${iconPng}" />
+          <div class="label" style='flexDirection: ${
+            o.reverse ? "row-reverse" : "row"
+          }'>
+            <div>${o.key}</div>
           </div>
-    </div>`;
-      },
-      (info) => {
-        // 聚合对象点击回调
-      }
-    )
+        </div>`;
+    })
     .markerClustererSetData(source);
 ```
 
@@ -139,19 +135,28 @@ map.drawPolyline([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 }]);
 map.drawPolygon([{ lat: 31.3, lng: 121.75 },{ lat: 31.4, lng: 121.75 },{ lat: 31.5, lng: 121.75 }]);
 ```
 
-12. 开启鼠标绘制折线 [startDrawPolyline]
+12. 开启鼠标绘制折线 [startDrawPolyline]  
+    双击选中图形，Delete 键删除
 
 ```
-map.startDrawPolyline();
+map.startDrawPolyline(({ id, latLngs, show, toggle, remove }) => {});
 ```
 
-13. 开启鼠标绘制多边形 [startDrawPolygon]
+13. 开启鼠标绘制多边形 [startDrawPolygon]  
+    双击选中图形，Delete 键删除
 
 ```
-map.startDrawPolygon();
+map.startDrawPolygon(({ id, latLngs, show, toggle, remove }) => {});
 ```
 
-14. 销毁 [destory]
+14. 开启测量 [startDrawMeasure]  
+    双击选中图形，Delete 键删除
+
+```
+map.startDrawMeasure();
+```
+
+15. 销毁 [destory]
 
 ```
 map.destory()
